@@ -1,0 +1,12 @@
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.exe.config
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.exe
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.pdb
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.csprojResolveAssemblyReference.cache
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.exe
+E:\Projects\GitHub\Octopus\Src\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.pdb
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.exe.config
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.exe
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\bin\Debug\Octopus.ConsoleTest.pdb
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.csprojResolveAssemblyReference.cache
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.exe
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.ConsoleTest\obj\Debug\Octopus.ConsoleTest.pdb

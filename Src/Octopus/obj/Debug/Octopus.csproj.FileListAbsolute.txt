@@ -1,0 +1,15 @@
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\Octopus.dll
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\Octopus.pdb
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\log4net.dll
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\log4net.xml
+E:\Projects\GitHub\Octopus\Src\Octopus\obj\Debug\Octopus.dll
+E:\Projects\GitHub\Octopus\Src\Octopus\obj\Debug\Octopus.pdb
+E:\Projects\GitHub\Octopus\Src\Octopus\obj\Debug\Octopus.csprojResolveAssemblyReference.cache
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\bin\Debug\Octopus.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\bin\Debug\Octopus.pdb
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\bin\Debug\log4net.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\bin\Debug\log4net.xml
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\obj\Debug\Octopus.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus\obj\Debug\Octopus.pdb
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\System.Net.Http.dll
+E:\Projects\GitHub\Octopus\Src\Octopus\bin\Debug\System.Net.Http.xml

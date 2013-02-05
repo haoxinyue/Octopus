@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DDE5BEFC-7BC4-4E21-84A1-E26B22B1EAE6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Octopus</RootNamespace>
+    <AssemblyName>Octopus</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activator\ActivatorBase.cs" />
+    <Compile Include="Activator\IActiviator.cs" />
+    <Compile Include="Activator\IntervalActivator.cs" />
+    <Compile Include="Activator\OneTimeActivator.cs" />
+    <Compile Include="Adapter\AdapterBase.cs" />
+    <Compile Include="Adapter\IAdapter.cs" />
+    <Compile Include="Adapter\ByteArrayAdapter.cs" />
+    <Compile Include="Adapter\StringAdapter.cs" />
+    <Compile Include="Channel\ChannelBase.cs" />
+    <Compile Include="Channel\HttpReaderChannel.cs" />
+    <Compile Include="Channel\IChannel.cs" />
+    <Compile Include="Channel\MultipleTcpClientChannel.cs" />
+    <Compile Include="Channel\ChannelData.cs" />
+    <Compile Include="Channel\TcpClientChannel.cs" />
+    <Compile Include="Channel\TcpServerChannel.cs" />
+    <Compile Include="Channel\UdpChannel.cs" />
+    <Compile Include="Command\ByteArrayCommand.cs" />
+    <Compile Include="Command\CommandBase.cs" />
+    <Compile Include="Command\ICommand.cs" />
+    <Compile Include="Command\StringCommand.cs" />
+    <Compile Include="Common\Collection\PriorityQueue.cs" />
+    <Compile Include="Common\Collection\SynchronizedQueue.cs" />
+    <Compile Include="Common\Communication\IStartStopSignal.cs" />
+    <Compile Include="Common\Communication\IStopSignal.cs" />
+    <Compile Include="Common\Communication\Tcp\ITcpListener.cs" />
+    <Compile Include="Common\Communication\Tcp\TcpConnectionInfo.cs" />
+    <Compile Include="Common\Communication\Tcp\TcpServer.cs" />
+    <Compile Include="Common\Communication\Tcp\TcpServerSignal.cs" />
+    <Compile Include="Common\CommonExtension.cs" />
+    <Compile Include="Common\Guard.cs" />
+    <Compile Include="Common\Helper.cs" />
+    <Compile Include="Common\ProducerConsumer\Consumer.cs" />
+    <Compile Include="Common\ProducerConsumer\IConsumer.cs" />
+    <Compile Include="Common\ProducerConsumer\IProducer.cs" />
+    <Compile Include="Common\ProducerConsumer\IProducerConsumerPattern.cs" />
+    <Compile Include="Common\ProducerConsumer\Producer.cs" />
+    <Compile Include="Common\ProducerConsumer\ProducerConsumerPattern.cs" />
+    <Compile Include="Config\OctopusConfig.cs" />
+    <Compile Include="Exceptions\AttributeNotFoundException.cs" />
+    <Compile Include="Exceptions\DuplicateFormatterException.cs" />
+    <Compile Include="Exceptions\DuplicateItemException.cs" />
+    <Compile Include="Exceptions\ElementNotFoundException.cs" />
+    <Compile Include="Exceptions\ElementValueNotFoundException.cs" />
+    <Compile Include="Exceptions\FormatterNotFoundException.cs" />
+    <Compile Include="Exceptions\UnknownElementException.cs" />
+    <Compile Include="Interpreter\ByteArrayInterpreter.cs" />
+    <Compile Include="DataItem.cs" />
+    <Compile Include="DataItemSorter.cs" />
+    <Compile Include="Interpreter\FormatterFilters\ByteArrayTypedFormatterFilter.cs" />
+    <Compile Include="Interpreter\FormatterFilters\ByteArrayLengthGreatThanFormatterFilter.cs" />
+    <Compile Include="Interpreter\FormatterFilters\FormatterFilterBase.cs" />
+    <Compile Include="Interpreter\FormatterFilters\IFormatterFilter.cs" />
+    <Compile Include="Interpreter\FormatterFilters\ByteArrayLengthEqualFormatterFilter.cs" />
+    <Compile Include="Interpreter\Formatters\ByteArrayFormatter.cs" />
+    <Compile Include="Interpreter\Formatters\FormatterBase.cs" />
+    <Compile Include="Interpreter\Formatters\IFormatter.cs" />
+    <Compile Include="Interpreter\Formatters\StringFormatter.cs" />
+    <Compile Include="Interpreter\IInterpreter.cs" />
+    <Compile Include="Interpreter\InterpreterBase.cs" />
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayByteItem.cs" />
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayCompositeValueItem.cs" />
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayByteCrcItem.cs" />
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayDoubleItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayInt16Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayInt32Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayInt64Item.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayStringItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayValueItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interpreter\Items\CompositeValueItem.cs" />
+    <Compile Include="Interpreter\Items\CustomValueItem.cs" />
+    <Compile Include="Interpreter\Items\IItem.cs" />
+    <Compile Include="Interpreter\Items\ItemSorter.cs" />
+    <Compile Include="Interpreter\Items\Item.cs" />
+    <Compile Include="Interpreter\Items\IValueItem.cs" />
+    <Compile Include="Interpreter\Items\LengthItem.cs" />
+    <Compile Include="Interpreter\Items\ByteArray\ByteArrayLoopItem.cs" />
+    <Compile Include="Interpreter\Items\StringItem\SimpleStringValueItem.cs" />
+    <Compile Include="Interpreter\Items\StringItem\StringValueItem.cs" />
+    <Compile Include="Interpreter\Items\ValueItem.cs" />
+    <Compile Include="Interpreter\StringInterpreter.cs" />
+    <Compile Include="Envelop.cs" />
+    <Compile Include="Message.cs" />
+    <Compile Include="Interpreter\MultipleFormatterByteArrayInterpreter.cs" />
+    <Compile Include="Interpreter\SingleFormatterByteArrayInterpreter.cs" />
+    <Compile Include="IObjectWithName.cs" />
+    <Compile Include="Log\ILogWriter.cs" />
+    <Compile Include="Log\ILogWriterFactory.cs" />
+    <Compile Include="Log\Log4NetLogWriter.cs" />
+    <Compile Include="Log\Log4NetLogWriterFactory.cs" />
+    <Compile Include="Log\Logging.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Common\Threading\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
