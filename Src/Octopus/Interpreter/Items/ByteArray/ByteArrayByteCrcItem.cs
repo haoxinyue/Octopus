@@ -42,8 +42,10 @@ namespace Octopus.Interpreter.Items
             _crcFromIndex = crcFromIndex;
         }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
+            formattedDataLength = 1;
+
             ushort crc = 0;
             for (int i = _crcFromIndex; i <= _crcToIndex; i++)
             {

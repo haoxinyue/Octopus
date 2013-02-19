@@ -114,12 +114,12 @@ namespace Octopus.Sample.TcpServer
             private string _para = string.Empty;
 
             public CustomItem(string name, short sortIndex, string para)
-                : base(name, sortIndex) 
+                : base(name, sortIndex)
             {
                 _para = para;
             }
 
-            public override DataItem GetValue(byte[] input, int index)
+            public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
             {
                 DataItem di = new DataItem("Custom", null);
 
@@ -131,15 +131,11 @@ namespace Octopus.Sample.TcpServer
                 di.AddDataItem(t);
                 di.AddDataItem(l);
 
+                formattedDataLength = 10;
                 return di;
             }
 
             public override int GetRequiredDataLength()
-            {
-                return 10;
-            }
-
-            public override int GetFormattedDataLength()
             {
                 return 10;
             }

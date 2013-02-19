@@ -28,7 +28,5 @@ namespace Octopus.Interpreter.Items
         short SortIndex { get; set; }
 
         int GetRequiredDataLength();
-
-        int GetFormattedDataLength();
     }
 }

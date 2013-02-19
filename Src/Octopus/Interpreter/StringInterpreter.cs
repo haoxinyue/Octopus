@@ -32,7 +32,8 @@ namespace Octopus.Interpreter
 
             IFormatter<string> formatter = GetMatchedFormatter(input.RawData);
 
-            Message m = formatter.Format(input.RawData, input.RemoteEndPoint);
+            int formattedDataLength = 0;
+            Message m = formatter.Format(input.RawData, input.RemoteEndPoint, ref formattedDataLength);
 
             if (m != null)
             {

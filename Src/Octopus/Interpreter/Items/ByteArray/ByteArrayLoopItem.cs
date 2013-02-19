@@ -27,8 +27,6 @@ namespace Octopus.Interpreter.Items
     {
         private ByteArrayCompositeValueItem _byteArrayCompositeValueItem = null;
 
-        private int _formattedDataLength = 0;
-
         public ByteArrayLoopItem(string name, ByteArrayCompositeValueItem byteArrayCompositeValueItem) : base(name)
         {
             _byteArrayCompositeValueItem = byteArrayCompositeValueItem;
@@ -44,9 +42,9 @@ namespace Octopus.Interpreter.Items
             return _byteArrayCompositeValueItem.GetRequiredDataLength();
         }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
-            _formattedDataLength = 0;
+            formattedDataLength = 0;
 
             DataItem dataItem = new DataItem(_name, null);
 
@@ -55,21 +53,16 @@ namespace Octopus.Interpreter.Items
 
             while (loopCount-- > 0)
             {
-                DataItem dataItemChild = _byteArrayCompositeValueItem.GetValue(input, currentIndex);
+                int subFormattedDataLength = 0;
+                DataItem dataItemChild = _byteArrayCompositeValueItem.GetValue(input, currentIndex, ref subFormattedDataLength);
 
                 dataItem.AddDataItem(dataItemChild);
 
-                currentIndex += _byteArrayCompositeValueItem.GetFormattedDataLength();
-
-                _formattedDataLength += _byteArrayCompositeValueItem.GetFormattedDataLength();
+                currentIndex += subFormattedDataLength;
+                formattedDataLength += subFormattedDataLength;
             }
 
             return dataItem;
-        }
-
-        public override int GetFormattedDataLength()
-        {
-            return _formattedDataLength;
         }
     }
 }

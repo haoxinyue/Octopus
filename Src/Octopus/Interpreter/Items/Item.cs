@@ -52,7 +52,5 @@ namespace Octopus.Interpreter.Items
         }
 
         public abstract int GetRequiredDataLength();
-
-        public abstract int GetFormattedDataLength();
     }
 }

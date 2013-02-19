@@ -29,16 +29,18 @@ namespace Octopus.Interpreter.Items
 
         public ByteArrayCompositeValueItem(string name, short sortIndex) : base(name, sortIndex) { }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
             int currentIndex = index;
 
             DataItem dataItem = new DataItem(_name, null);
 
             foreach (var item in _items)
-            {
-                dataItem.AddDataItem(item.GetValue(input, currentIndex));
-                currentIndex += item.GetFormattedDataLength();
+            {     
+                int subFormattedDataLength = 0;
+                dataItem.AddDataItem(item.GetValue(input, currentIndex, ref subFormattedDataLength));
+                formattedDataLength += subFormattedDataLength;
+                currentIndex += subFormattedDataLength;
             }
 
             return dataItem;
@@ -54,11 +56,6 @@ namespace Octopus.Interpreter.Items
             }
 
             return length;
-        }
-
-        public override int GetFormattedDataLength()
-        {
-            return GetRequiredDataLength();
         }
     }
 }

@@ -63,14 +63,12 @@ namespace Octopus.Interpreter.Formatters
 
         public abstract int GetFormatterRequiredDataLength();
 
-        public abstract int GetFormattedDataLength();
-
         protected bool Exists(Item item)
         {
             return _items.Exists((m) => m.Name == item.Name);
         }
 
-        public virtual Message Format(T input, IPEndPoint endPoint)
+        public virtual Message Format(T input, IPEndPoint endPoint, ref int formattedDataLength)
         {
             if (OnFormatStart != null)
             {
@@ -79,7 +77,7 @@ namespace Octopus.Interpreter.Formatters
 
             bool successful = false;
 
-            Message message = FormatProcess(input);
+            Message message = FormatProcess(input, ref formattedDataLength);
 
             successful = (message != null);
 
@@ -106,7 +104,7 @@ namespace Octopus.Interpreter.Formatters
             return message;
         }
 
-        protected abstract Message FormatProcess(T input);
+        protected abstract Message FormatProcess(T input, ref int formattedDataLength);
 
         public ReadOnlyCollection<Item> Items
         {

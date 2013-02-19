@@ -22,6 +22,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Concurrent;
 
 namespace Octopus.Interpreter
 {
@@ -31,9 +32,11 @@ namespace Octopus.Interpreter
 
         protected byte[] _tailers;
 
-        protected List<byte> _buffer = new List<byte>(4096);
+        protected ConcurrentDictionary<string, List<byte>> _bufferList = new ConcurrentDictionary<string,List<byte>>();
 
         protected int _minFormatterDataLength = short.MaxValue;
+
+        protected object syncRoot = new object();
 
         public ByteArrayInterpreter(string name, Action<Envelop> notifyMessageCreated)
             : base(name, notifyMessageCreated)
@@ -67,27 +70,34 @@ namespace Octopus.Interpreter
         public override List<Message> InterpreteProcess(ChannelData<byte[]> channelData)
         {
             List<Message> messageList = new List<Message>();
+            string dicKey = channelData.RemoteEndPoint.Address.ToString();
+            if(!_bufferList.ContainsKey(channelData.RemoteEndPoint.Address.ToString()))
+            {
+                _bufferList[dicKey] = new List<byte>(4096);
+            }
+
+            List<byte> buffer = _bufferList[dicKey];
 
             try
             {
-                _buffer.AddRange(channelData.RawData);
+                buffer.AddRange(channelData.RawData);
 
                 int tailerIndex = 0;
 
-                while (_buffer.Count > 0 && _buffer.Count >= _minFormatterDataLength + GetHeaderLength() + GetTailerLength())
+                while (buffer.Count > 0 && buffer.Count >= _minFormatterDataLength + GetHeaderLength() + GetTailerLength())
                 {
                     if (HasHeader())
                     {
-                        if (!IsStartWithHeader())
+                        if (!IsStartWithHeader(dicKey))
                         {
-                            ClearToHeader();
+                            ClearToHeader(dicKey);
                             continue;
                         }
                     }
 
                     if (HasTailer())
                     {
-                        tailerIndex = GetTailerIndex();
+                        tailerIndex = GetTailerIndex(dicKey);
                         //if no tailer in the buffer
                         if (tailerIndex <= 0)
                         {
@@ -95,7 +105,7 @@ namespace Octopus.Interpreter
                         }
                     }
 
-                    byte[] byteArray = _buffer.ToArray();
+                    byte[] byteArray = buffer.ToArray();
 
                     byte[] byteArrayForFormat = GetBytesForFormat(byteArray, tailerIndex);
 
@@ -109,24 +119,24 @@ namespace Octopus.Interpreter
                         {
                             if (HasTailer())
                             {
-                                _buffer.RemoveRange(0, tailerIndex + _tailers.Length);
+                                buffer.RemoveRange(0, tailerIndex + _tailers.Length);
                             }
 
                             break;
                         }
 
-                        Message message = formatter.Format(byteArrayForFormat, channelData.RemoteEndPoint);
-                        int formattedDataLength = formatter.GetFormattedDataLength();
+                        int formattedDataLength = 0;
+                        Message message = formatter.Format(byteArrayForFormat, channelData.RemoteEndPoint, ref formattedDataLength);
 
                         if (message != null)
                         {
                             if (HasTailer())
                             {
-                                _buffer.RemoveRange(0, tailerIndex + _tailers.Length);
+                                buffer.RemoveRange(0, tailerIndex + _tailers.Length);
                             }
                             else
                             {
-                                _buffer.RemoveRange(0, formattedDataLength + GetHeaderLength());
+                                buffer.RemoveRange(0, formattedDataLength + GetHeaderLength());
                             }
 
                             messageList.Add(message);
@@ -135,17 +145,17 @@ namespace Octopus.Interpreter
                         {
                             if (HasTailer())
                             {
-                                _buffer.RemoveRange(0, tailerIndex + _tailers.Length);
+                                buffer.RemoveRange(0, tailerIndex + _tailers.Length);
                             }
                             else
                             {
-                                _buffer.RemoveRange(0, formattedDataLength + GetHeaderLength());
+                                buffer.RemoveRange(0, formattedDataLength + GetHeaderLength());
                             }
                         }
                     }
                     else
                     {
-                        _buffer.Clear();
+                        buffer.Clear();
                         _logWriter.Log("ByteArrayInterpreter InterpreteProcess function unknown formatter type:" + GetByteArrayLogString(channelData.RawData));
                     }
                 }
@@ -196,11 +206,11 @@ namespace Octopus.Interpreter
             return byteArrayForFormat;
         }
 
-        protected bool IsStartWithHeader()
+        protected bool IsStartWithHeader(string dicKey)
         {
             if (_headers != null && _headers.Length > 0)
             {
-                return _buffer.ToArray().IndexOf(_headers) == 0;
+                return _bufferList[dicKey].ToArray().IndexOf(_headers) == 0;
             }
             else
             {
@@ -208,39 +218,39 @@ namespace Octopus.Interpreter
             }
         }
 
-        protected bool IsEndWithTailer()
+        protected bool IsEndWithTailer(string dicKey)
         {
             if (_tailers != null && _tailers.Length > 0)
             {
-                return _buffer.ToArray().IndexOf(_tailers) == _buffer.Count - _tailers.Length;
+                return _bufferList[dicKey].ToArray().IndexOf(_tailers) == _bufferList[dicKey].Count - _tailers.Length;
             }
 
             return false;
         }
 
-        protected int GetTailerIndex()
+        protected int GetTailerIndex(string dicKey)
         {
-            return _buffer.ToArray().IndexOf(_tailers);
+            return _bufferList[dicKey].ToArray().IndexOf(_tailers);
         }
 
-        protected int GetHeaderIndex()
+        protected int GetHeaderIndex(string dicKey)
         {
-            return _buffer.ToArray().IndexOf(_headers);
+            return _bufferList[dicKey].ToArray().IndexOf(_headers);
         }
 
         /// <summary>
         /// must begin with headers, if not remove the data before headers
         /// </summary>
-        protected virtual void ClearToHeader()
+        protected virtual void ClearToHeader(string dicKey)
         {
-            int headerIndex = GetHeaderIndex();
+            int headerIndex = GetHeaderIndex(dicKey);
             if (headerIndex < 0)
             {
-                _buffer.Clear();
+                _bufferList[dicKey].Clear();
             }
             else
             {
-                _buffer.RemoveRange(0, headerIndex);
+                _bufferList[dicKey].RemoveRange(0, headerIndex);
             }
         }
 

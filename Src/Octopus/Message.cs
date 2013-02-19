@@ -37,6 +37,8 @@ namespace Octopus
 
         public Message() { }
 
+        public Message(string messageType) { _messageType = messageType; }
+
         public Message(string messageType, SortedDictionary<string, DataItem> dataItems)
         {
             _messageType = messageType;
@@ -46,6 +48,7 @@ namespace Octopus
         public SortedDictionary<string, DataItem> DataItems
         {
             get { return _dataItems; }
+            set { _dataItems = value; }
         }
     }
 }

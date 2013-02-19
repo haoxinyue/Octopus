@@ -6,7 +6,7 @@
     <Tailer>AA55</Tailer>
     <Formatter Name="Formatter1" Type="ByteArrayFormatter">
       <Item Name="TypeId" SortIndex="0" Type="ByteArrayInt32Item"></Item>
-      <Item Name="ByteArrayLoopItem1" SortIndex="0" Type="ByteArrayLoopItem">
+      <Item Name="ByteArrayLoopItem1" SortIndex="1" Type="ByteArrayLoopItem">
         <Item Name="ByteArrayCompositeValueItem1" SortIndex="0" Type="ByteArrayCompositeValueItem">
           <Item Name="NodeName" SortIndex="1" Type="ByteArrayStringItem" ByteCount="6" Encoding="ascii"></Item>
           <Item Name="NodeId" SortIndex="0" Type="ByteArrayInt32Item"></Item>

@@ -38,36 +38,28 @@ namespace Octopus.Interpreter.Formatters
             return length;
         }
 
-        public override int GetFormattedDataLength()
-        {
-            int length = 0;
-
-            foreach (Item item in _items)
-            {
-                length += item.GetFormattedDataLength();
-            }
-
-            return length;
-        }
-
-        protected override Message FormatProcess(string input)
+        protected override Message FormatProcess(string input, ref int formattedDataLength)
         {
             Message m = null;
-
+            formattedDataLength = 0;
             try
             {
                 SortedDictionary<string, DataItem> dict = new SortedDictionary<string, DataItem>(DataItemSorter.Instance);
                 foreach (Item item in _items)
                 {
+                    int subFormattedDataLength = 0;
+
                     if (item is SimpleStringValueItem)
                     {
-                        DataItem dataItem = ((SimpleStringValueItem)item).GetValue(input, 0);
+                        DataItem dataItem = ((SimpleStringValueItem)item).GetValue(input, 0, ref subFormattedDataLength);
 
                         if (dataItem.Value != null)
                         {
                             dict.Add(dataItem.Name, dataItem);
                         }
                     }
+
+                    subFormattedDataLength += subFormattedDataLength;
                 }
 
                 m = new Message(_name, dict);

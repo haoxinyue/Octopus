@@ -29,17 +29,13 @@ namespace Octopus.Interpreter.Items
 
         public ByteArrayInt64Item(string name, short sortIndex) : base(name, sortIndex) { }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
+            formattedDataLength = sizeof(Int64);
             return new DataItem(_name, BitConverter.ToInt64(input, index));
         }
 
         public override int GetRequiredDataLength()
-        {
-            return sizeof(Int64);
-        }
-
-        public override int GetFormattedDataLength()
         {
             return sizeof(Int64);
         }

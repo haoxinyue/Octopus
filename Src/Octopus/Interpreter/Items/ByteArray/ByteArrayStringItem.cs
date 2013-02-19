@@ -43,17 +43,13 @@ namespace Octopus.Interpreter.Items
             _encoding = encoding;
         }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
+            formattedDataLength = _byteCount;
             return new DataItem(_name, _encoding.GetString(input, index, _byteCount));
         }
 
         public override int GetRequiredDataLength()
-        {
-            return _byteCount;
-        }
-
-        public override int GetFormattedDataLength()
         {
             return _byteCount;
         }

@@ -29,6 +29,6 @@ namespace Octopus.Interpreter.Items
 
         public ValueItem(string name, short sortIndex) : base(name, sortIndex) { }
 
-        public abstract Toutput GetValue(Tinput input, int index);
+        public abstract Toutput GetValue(Tinput input, int index, ref int formattedDataLength);
     }
 }

@@ -29,17 +29,13 @@ namespace Octopus.Interpreter.Items
 
         public ByteArrayDoubleItem(string name, short sortIndex) : base(name, sortIndex) { }
 
-        public override DataItem GetValue(byte[] input, int index)
+        public override DataItem GetValue(byte[] input, int index, ref int formattedDataLength)
         {
+            formattedDataLength = sizeof(double);
             return new DataItem(_name, BitConverter.ToDouble(input, index));
         }
 
         public override int GetRequiredDataLength()
-        {
-            return sizeof(double);
-        }
-
-        public override int GetFormattedDataLength()
         {
             return sizeof(double);
         }

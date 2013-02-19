@@ -28,9 +28,7 @@ namespace Octopus.Interpreter.Formatters
     {
         int GetFormatterRequiredDataLength();
 
-        int GetFormattedDataLength();
-
-        Message Format(T input, IPEndPoint endPoint);
+        Message Format(T input, IPEndPoint endPoint, ref int formattedDataLength);
 
         ReadOnlyCollection<Item> Items { get; }
 

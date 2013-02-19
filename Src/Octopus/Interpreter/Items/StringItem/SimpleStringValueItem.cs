@@ -29,17 +29,13 @@ namespace Octopus.Interpreter.Items
 
         public SimpleStringValueItem(string name, short sortIndex) : base(name, sortIndex) { }
 
-        public override DataItem GetValue(string input, int index)
+        public override DataItem GetValue(string input, int index, ref int formattedDataLength)
         {
+            formattedDataLength = -1;
             return new DataItem(_name, input);
         }
 
         public override int GetRequiredDataLength()
-        {
-            return -1;
-        }
-
-        public override int GetFormattedDataLength()
         {
             return -1;
         }

@@ -24,15 +24,12 @@ namespace Octopus.Interpreter.Formatters
 {
     public class ByteArrayFormatter : FormatterBase<byte[]>
     {
-        protected int _formattedDataLength = 0;
-
         public byte _formatterId = 0;
-
-        protected int _index = 0;
 
         public ByteArrayFormatter(string name) : base(name) { }
 
-        public ByteArrayFormatter(string name, byte formatterId) : base(name) 
+        public ByteArrayFormatter(string name, byte formatterId)
+            : base(name)
         {
             _formatterId = formatterId;
         }
@@ -42,16 +39,11 @@ namespace Octopus.Interpreter.Formatters
             int length = 0;
 
             foreach (Item item in _items)
-            {                
+            {
                 length += item.GetRequiredDataLength();
             }
 
             return length;
-        }
-
-        public override int GetFormattedDataLength()
-        {
-            return _formattedDataLength;
         }
 
         public int GetFormatterId()
@@ -59,12 +51,12 @@ namespace Octopus.Interpreter.Formatters
             return _formatterId;
         }
 
-        protected override Message FormatProcess(byte[] input)
+        protected override Message FormatProcess(byte[] input, ref int formattedDataLength)
         {
             Message m = null;
 
-            _index = 0;
-            _formattedDataLength = 0;
+            int index = 0;
+            formattedDataLength = 0;
 
             try
             {
@@ -72,10 +64,11 @@ namespace Octopus.Interpreter.Formatters
 
                 foreach (Item item in _items)
                 {
+                    int subFormattedDataLength = 0;
                     if (item is ValueItem<byte[], DataItem>)
                     {
-                        DataItem dataItem = ((ValueItem<byte[], DataItem>)item).GetValue(input, _index);
-                        _index += item.GetFormattedDataLength();
+                        DataItem dataItem = ((ValueItem<byte[], DataItem>)item).GetValue(input, index, ref subFormattedDataLength);
+                        index += subFormattedDataLength;
 
                         if (dataItem.Value != null || dataItem.HasItems)
                         {
@@ -83,7 +76,7 @@ namespace Octopus.Interpreter.Formatters
                         }
                     }
 
-                    _formattedDataLength += item.GetFormattedDataLength();
+                    formattedDataLength += subFormattedDataLength;
                 }
 
                 m = new Message(_name, dict);
