@@ -29,11 +29,11 @@ namespace Octopus.Common.ProducerConsumer
     {
         private Func<T> _produceFunc = null;
 
-        private IProducerConsumerCollection<T> _productQueue = null;
+        private BlockingCollection<T> _productQueue = null;
 
         private bool stopRequest;
 
-        public Producer(Func<T> produceFunc, IProducerConsumerCollection<T> productQueue)
+        public Producer(Func<T> produceFunc, BlockingCollection<T> productQueue)
         {
             _produceFunc = produceFunc;
             _productQueue = productQueue;

@@ -32,13 +32,13 @@ namespace Octopus.Common.ProducerConsumer
 
         private List<IConsumer<T>> _consumers = new List<IConsumer<T>>();
 
-        private IProducerConsumerCollection<T> _queue = null;
+        private BlockingCollection<T> _queue = null;
 
         private bool _isDisposed = false;
 
         public Action PreStartAction { get; set; }
 
-        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, int producerCount, Action<T> consumerAction, int consumerCount)
+        public ProducerConsumerPattern(BlockingCollection<T> queue, Func<T> producerFunc, int producerCount, Action<T> consumerAction, int consumerCount)
         {
             _queue = queue;
 
@@ -55,9 +55,9 @@ namespace Octopus.Common.ProducerConsumer
             }
         }
 
-        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction) : this(queue, producerFunc, 1, consumerAction, 1) { }
+        public ProducerConsumerPattern(BlockingCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction) : this(queue, producerFunc, 1, consumerAction, 1) { }
 
-        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction, int consumerCount) : this(queue, producerFunc, 1, consumerAction, consumerCount) { }
+        public ProducerConsumerPattern(BlockingCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction, int consumerCount) : this(queue, producerFunc, 1, consumerAction, consumerCount) { }
 
         public void Start()
         {

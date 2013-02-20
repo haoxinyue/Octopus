@@ -29,11 +29,11 @@ namespace Octopus.Common.ProducerConsumer
     {
         private Action<T> _consumerAction = null;
 
-        private IProducerConsumerCollection<T> _productQueue = null;
+        private BlockingCollection<T> _productQueue = null;
 
         private bool _stopRequest = false;
 
-        public Consumer(Action<T> consumerAction, IProducerConsumerCollection<T> productQueue)
+        public Consumer(Action<T> consumerAction, BlockingCollection<T> productQueue)
         {
             _consumerAction = consumerAction;
             _productQueue = productQueue;

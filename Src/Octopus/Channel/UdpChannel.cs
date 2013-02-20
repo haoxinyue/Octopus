@@ -53,7 +53,7 @@ namespace Octopus.Channel
 
         private IProducerConsumerPattern _producerConsumerPattern = null;
 
-        private ConcurrentQueue<ChannelData<byte[]>> _concurrentQueue;
+        private BlockingCollection<ChannelData<byte[]>> _concurrentQueue;
 
         private IPAddress _bindAddress = IPAddress.Any;
 
@@ -96,7 +96,7 @@ namespace Octopus.Channel
             IPEndPoint localEndPoint = new IPEndPoint(localAddress, _receivePort);
             _socket.Bind(localEndPoint);
 
-            _concurrentQueue = new ConcurrentQueue<ChannelData<byte[]>>();
+            _concurrentQueue = new BlockingCollection<ChannelData<byte[]>>();
             _producerConsumerPattern = new ProducerConsumerPattern<ChannelData<byte[]>>(_concurrentQueue, ProduceData, ConsumeData);
 
             _producerConsumerPattern.Start();
