@@ -29,17 +29,14 @@ namespace Octopus.Common.ProducerConsumer
     {
         private Func<T> _produceFunc = null;
 
-        private ConcurrentQueue<T> _productQueue = null;
+        private IProducerConsumerCollection<T> _productQueue = null;
 
         private bool stopRequest;
 
-        private AutoResetEvent _autoResetEvent = null;
-
-        public Producer(Func<T> produceFunc, ConcurrentQueue<T> productQueue, AutoResetEvent autoResetEvent)
+        public Producer(Func<T> produceFunc, IProducerConsumerCollection<T> productQueue)
         {
             _produceFunc = produceFunc;
             _productQueue = productQueue;
-            _autoResetEvent = autoResetEvent;
         }
 
         public void StartProduce()
@@ -50,9 +47,7 @@ namespace Octopus.Common.ProducerConsumer
                 {
                     T t = _produceFunc();
 
-                    _productQueue.Enqueue(t);
-
-                    _autoResetEvent.Set();
+                    _productQueue.TryAdd(t);
                 }
                 catch
                 {

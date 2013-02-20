@@ -29,42 +29,24 @@ namespace Octopus.Common.ProducerConsumer
     {
         private Action<T> _consumerAction = null;
 
-        private ConcurrentQueue<T> _productQueue = null;
+        private IProducerConsumerCollection<T> _productQueue = null;
 
         private bool _stopRequest = false;
 
-        private WaitHandle _waitHandle = null;
-
-        public Consumer(Action<T> consumerAction, ConcurrentQueue<T> productQueue) : this(consumerAction, productQueue, null) { }
-
-        public Consumer(Action<T> consumerAction, ConcurrentQueue<T> productQueue, WaitHandle waitHandle)
+        public Consumer(Action<T> consumerAction, IProducerConsumerCollection<T> productQueue)
         {
             _consumerAction = consumerAction;
             _productQueue = productQueue;
-            _waitHandle = waitHandle;
         }
 
         public void StartConsume()
         {
             while (!_stopRequest)
             {
-                if (_waitHandle.WaitOne())
+                T t = default(T);
+                if (_productQueue.TryTake(out t))
                 {
-                    try
-                    {
-                        while (_productQueue.Count > 0)
-                        {
-                            T t = default(T);
-                            if (_productQueue.TryDequeue(out t))
-                            {
-                                _consumerAction(t);
-                            }
-                        }
-                    }
-                    catch
-                    {
-                        throw;
-                    }
+                    _consumerAction(t);
                 }
             }
         }

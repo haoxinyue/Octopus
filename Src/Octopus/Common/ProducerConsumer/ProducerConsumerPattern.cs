@@ -32,34 +32,32 @@ namespace Octopus.Common.ProducerConsumer
 
         private List<IConsumer<T>> _consumers = new List<IConsumer<T>>();
 
-        private ConcurrentQueue<T> _queue = null;
-
-        private AutoResetEvent _notifyEvent = new AutoResetEvent(false);
+        private IProducerConsumerCollection<T> _queue = null;
 
         private bool _isDisposed = false;
 
         public Action PreStartAction { get; set; }
 
-        public ProducerConsumerPattern(ConcurrentQueue<T> queue, Func<T> producerFunc, int producerCount, Action<T> consumerAction, int consumerCount)
+        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, int producerCount, Action<T> consumerAction, int consumerCount)
         {
             _queue = queue;
 
             for (int i = 0; i < producerCount; i++)
             {
-                IProducer<T> producer = new Producer<T>(producerFunc, queue, _notifyEvent);
+                IProducer<T> producer = new Producer<T>(producerFunc, queue);
                 _producers.Add(producer);
             }
 
             for (int i = 0; i < consumerCount; i++)
             {
-                Consumer<T> consumer = new Consumer<T>(consumerAction, queue, _notifyEvent);
+                Consumer<T> consumer = new Consumer<T>(consumerAction, queue);
                 _consumers.Add(consumer);
             }
         }
 
-        public ProducerConsumerPattern(ConcurrentQueue<T> queue, Func<T> producerFunc, Action<T> consumerAction) : this(queue, producerFunc, 1, consumerAction, 1) { }
+        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction) : this(queue, producerFunc, 1, consumerAction, 1) { }
 
-        public ProducerConsumerPattern(ConcurrentQueue<T> queue, Func<T> producerFunc, Action<T> consumerAction, int consumerCount) : this(queue, producerFunc, 1, consumerAction, consumerCount) { }
+        public ProducerConsumerPattern(IProducerConsumerCollection<T> queue, Func<T> producerFunc, Action<T> consumerAction, int consumerCount) : this(queue, producerFunc, 1, consumerAction, consumerCount) { }
 
         public void Start()
         {
@@ -100,8 +98,6 @@ namespace Octopus.Common.ProducerConsumer
 
         private void Close()
         {
-            _notifyEvent.Dispose();
-
             foreach (IConsumer<T> consumer in _consumers)
             {
                 consumer.StopConsume();
