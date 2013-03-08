@@ -7,22 +7,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Sample", "Octopus.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Extension", "Octopus.Extension\Octopus.Extension.csproj", "{6DDC37D4-AE35-4799-BA74-E2AB3F12D7B4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.Log4Net", "Octopus.Log4Net\Octopus.Log4Net.csproj", "{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Octopus.NLog", "Octopus.NLog\Octopus.NLog.csproj", "{F8C37A92-959B-45C9-AC70-D97087506913}"
+EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 4
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://10.1.5.60:8080/tfs/sari01
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Octopus\\Octopus.csproj
-		SccProjectName1 = Octopus
-		SccLocalPath1 = Octopus
-		SccProjectUniqueName2 = Octopus.Extension\\Octopus.Extension.csproj
-		SccProjectName2 = Octopus.Extension
-		SccLocalPath2 = Octopus.Extension
-		SccProjectUniqueName3 = Octopus.Sample\\Octopus.Sample.csproj
-		SccProjectName3 = Octopus.Sample
-		SccLocalPath3 = Octopus.Sample
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -40,6 +29,14 @@ Global
 		{6DDC37D4-AE35-4799-BA74-E2AB3F12D7B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6DDC37D4-AE35-4799-BA74-E2AB3F12D7B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6DDC37D4-AE35-4799-BA74-E2AB3F12D7B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8C37A92-959B-45C9-AC70-D97087506913}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8C37A92-959B-45C9-AC70-D97087506913}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8C37A92-959B-45C9-AC70-D97087506913}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8C37A92-959B-45C9-AC70-D97087506913}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

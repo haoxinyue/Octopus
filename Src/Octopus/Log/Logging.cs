@@ -20,23 +20,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using log4net;
 
 namespace Octopus.Log
 {
-    public static class Logging
+    public class Logging
     {
         private static ILogWriter _logWriter = null;
-
-        static Logging()
-        {
-            ILogWriterFactory logFactory = new Log4NetLogWriterFactory();
-            _logWriter = logFactory.CreateLogWriter();
-        }
+        private static ILogWriterFactory _logWriterFactory = null;
 
         public static ILogWriter GetLogWriter()
         {
+            if (_logWriter == null)
+            {
+                if (_logWriterFactory == null)
+                {
+                    _logWriterFactory = new ConsoleLogWriterFactory();
+                }
+
+                _logWriter = _logWriterFactory.CreateLogWriter();
+            }
+
             return _logWriter;
+        }
+
+        public static void UseLogger(ILogWriterFactory logWriterFactory)
+        {
+            _logWriterFactory = logWriterFactory;
         }
     }
 }

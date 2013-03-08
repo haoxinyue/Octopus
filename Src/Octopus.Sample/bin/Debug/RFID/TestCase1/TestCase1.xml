@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Adapter Name="Adapter1" Type="RFIDAdapter">
+  <Channel Name="Channel1" Type="RFIDChannel" LocalPort="9988">
+    <RFIDConfig>
+      <PrividerName>Impinj</PrividerName>
+      <ReaderPower>20</ReaderPower>
+      <ConnectionStrings>
+        <ConnectionString>10.1.5.190</ConnectionString>
+      </ConnectionStrings>
+    </RFIDConfig>
+  </Channel>
+  <Interpreter Name="Interpreter1" Type="RFIDInterpreter">
+    <Filters>
+      <Filter Name="Filter2" Type="DuplicateFilter" DurationInS="30"></Filter>
+      <Filter Name="Filter1" Type="RSSIFilter" IsFirst="true" RSSI="-100" NextFilterName="Filter2"></Filter>
+    </Filters>
+  </Interpreter>
+</Adapter>

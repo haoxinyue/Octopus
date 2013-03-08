@@ -5,6 +5,8 @@ using System.IO;
 using System.Net.Http;
 using System.Net.Sockets;
 using System.Threading;
+using Octopus.Config;
+using Octopus.Log4Net;
 
 namespace Octopus.Sample
 {
@@ -16,10 +18,15 @@ namespace Octopus.Sample
 
         static void Main(string[] args)
         {
+            OctopusConfig oc = new OctopusConfig();
+            oc.UseLog4Net();
+
+            #region TcpServer
+
             #region TcpServer.TestCase1
 
-            TcpServer.TestCase1 case1 = new TcpServer.TestCase1();
-            case1.RunTest();
+            //TcpServer.TestCase1 case1 = new TcpServer.TestCase1();
+            //case1.RunTest();
 
             #endregion
 
@@ -34,13 +41,6 @@ namespace Octopus.Sample
 
             //TcpServer.TestCase3 case3 = new TcpServer.TestCase3();
             //case3.RunTest();
-
-            #endregion
-
-            #region TcpServer.TestCase4
-
-            //TcpServer.TestCase4 case4 = new TcpServer.TestCase4();
-            //case4.RunTest();
 
             #endregion
 
@@ -76,6 +76,8 @@ namespace Octopus.Sample
 
             //TcpServer.TestCase9 case9 = new TcpServer.TestCase9();
             //case9.RunTest();
+
+            #endregion
 
             #endregion
         }

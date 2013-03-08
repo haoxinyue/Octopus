@@ -11,10 +11,14 @@
     <AssemblyName>Octopus.Sample</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -64,6 +68,14 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Octopus.Log4Net\Octopus.Log4Net.csproj">
+      <Project>{D0F40E5C-6359-4D1F-87DB-3ECE237E0013}</Project>
+      <Name>Octopus.Log4Net</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Octopus.RFID\Octopus.RFID.csproj">
+      <Project>{F5CFC85A-84A9-4219-9CCE-47137B32E8FD}</Project>
+      <Name>Octopus.RFID</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Octopus\Octopus.csproj">
       <Project>{dde5befc-7bc4-4e21-84a1-e26b22b1eae6}</Project>
       <Name>Octopus</Name>

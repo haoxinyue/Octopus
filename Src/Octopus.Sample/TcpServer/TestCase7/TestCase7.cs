@@ -67,7 +67,8 @@ namespace Octopus.Sample.TcpServer
 
         public void StartServerWithConfig()
         {
-            OctopusConfig oc = OctopusConfig.Load("TcpServer\\TestCase7\\TestCase7.xml");
+            OctopusConfig oc = new OctopusConfig();
+            oc.Load("TcpServer\\TestCase7\\TestCase7.xml");
 
             foreach (var item in oc.Adapters)
             {
@@ -114,7 +115,7 @@ namespace Octopus.Sample.TcpServer
             private string _para = string.Empty;
 
             public CustomItem(string name, short sortIndex, string para)
-                : base(name, sortIndex)
+                : base(name, sortIndex) 
             {
                 _para = para;
             }

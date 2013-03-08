@@ -37,18 +37,18 @@ namespace Octopus.Config
 {
     public class OctopusConfig
     {
-        private static Dictionary<string, IAdapter> _adapters = new Dictionary<string, IAdapter>();
+        private Dictionary<string, IAdapter> _adapters = new Dictionary<string, IAdapter>();
 
-        private static string _currentAdapterName = string.Empty;
+        private string _currentAdapterName = string.Empty;
 
-        private static Dictionary<string, Dictionary<string, object>> _adapterObjects = new Dictionary<string, Dictionary<string, object>>();
+        private Dictionary<string, Dictionary<string, object>> _adapterObjects = new Dictionary<string, Dictionary<string, object>>();
 
         public Dictionary<string, IAdapter> Adapters
         {
             get { return _adapters; }
         }
 
-        public static OctopusConfig Load(string filePath)
+        public void Load(string filePath)
         {
             XDocument xDoc = null;
 
@@ -57,13 +57,11 @@ namespace Octopus.Config
                 xDoc = XDocument.Load(fs);
             }
 
-            return Load(xDoc);
+            Load(xDoc);
         }
 
-        private static OctopusConfig Load(XDocument xDoc)
+        private void Load(XDocument xDoc)
         {
-            OctopusConfig oc = new OctopusConfig();
-
             foreach (var adapterElement in xDoc.Elements("Adapter"))
             {
                 IAdapter adapter = null;
@@ -78,7 +76,7 @@ namespace Octopus.Config
 
                 adapter = GetAdapter(adapterElement);
 
-                oc.Adapters.Add(adapter.Name, adapter);
+                _adapters.Add(adapter.Name, adapter);
 
                 foreach (var activatorElement in adapterElement.Elements("Activator"))
                 {
@@ -94,11 +92,9 @@ namespace Octopus.Config
                     }
                 }
             }
-
-            return oc;
         }
 
-        private static IAdapter GetAdapter(XElement element)
+        private IAdapter GetAdapter(XElement element)
         {
             string adapterType = GetAttribute(element, "Type");
             string adapterName = GetAttribute(element, "Name");
@@ -141,7 +137,7 @@ namespace Octopus.Config
             return adapter;
         }
 
-        private static object GetChannel(XElement element)
+        private object GetChannel(XElement element)
         {
             string channelType = GetAttribute(element, "Type");
             string name = GetAttribute(element, "Name");
@@ -232,7 +228,7 @@ namespace Octopus.Config
             return channel;
         }
 
-        private static string GetAttribute(XElement element, string attributeName)
+        public string GetAttribute(XElement element, string attributeName)
         {
             XAttribute xAttri = element.Attribute(attributeName);
 
@@ -255,7 +251,7 @@ namespace Octopus.Config
             }
         }
 
-        private static object GetInterpreter(XElement element)
+        private object GetInterpreter(XElement element)
         {
             string interpreterType = GetAttribute(element, "Type");
             string interpreterName = GetAttribute(element, "Name");
@@ -339,7 +335,7 @@ namespace Octopus.Config
             return returnInterpreter;
         }
 
-        private static object GetFormatter(XElement element)
+        private object GetFormatter(XElement element)
         {
             string formatterType = GetAttribute(element, "Type");
             string formatterName = GetAttribute(element, "Name");
@@ -387,7 +383,7 @@ namespace Octopus.Config
             return returnFormatter;
         }
 
-        private static object GetFormatterFilter(XElement element)
+        private object GetFormatterFilter(XElement element)
         {
             string filterType = GetAttribute(element, "Type");
             string filterName = GetAttribute(element, "Name");
@@ -471,7 +467,7 @@ namespace Octopus.Config
             }
         }
 
-        private static Item GetItem(XElement element)
+        private Item GetItem(XElement element)
         {
             Item item = null;
             string itemType = GetAttribute(element, "Type");
@@ -568,7 +564,7 @@ namespace Octopus.Config
             return item;
         }
 
-        private static IActivator GetActivator(XElement element, object channel)
+        private IActivator GetActivator(XElement element, object channel)
         {
             IActivator activator = null;
 
@@ -611,7 +607,7 @@ namespace Octopus.Config
             return activator;
         }
 
-        private static ICommand GetCommand(XElement element, object channel)
+        private ICommand GetCommand(XElement element, object channel)
         {
             ICommand command = null;
             string commandType = GetAttribute(element, "Type");
@@ -649,7 +645,7 @@ namespace Octopus.Config
             return command;
         }
 
-        private static byte[] HexStringToByteArray(string hex)
+        private byte[] HexStringToByteArray(string hex)
         {
             return Enumerable.Range(0, hex.Length)
                              .Where(x => x % 2 == 0)
@@ -657,7 +653,7 @@ namespace Octopus.Config
                              .ToArray();
         }
 
-        private static void GetEventConnecter(XElement element)
+        private void GetEventConnecter(XElement element)
         {
             if (element.Elements("Linker") != null)
             {

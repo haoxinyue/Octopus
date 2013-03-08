@@ -22,6 +22,19 @@ E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03�
 E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\obj\Debug\Octopus.Sample.pdb
 E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\TcpServer\TestCase8\TestCase8.xml
 E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\TcpServer\TestCase9\TestCase9.xml
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\System.Net.Http.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\System.Net.Http.xml
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\Octopus.RFID.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\Impinj.OctaneSdk.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\LLRP.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\LLRP.Impinj.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\Octopus.RFID.pdb
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\RFID\TestCase1\TestCase1.xml
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\Octopus.Log4Net.dll
+E:\Projects\智慧城市支撑平台\01子系统\01Octopus\01工程\02开发\03实现\04源代码\Octopus.Sample\bin\Debug\Octopus.Log4Net.pdb
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.csprojResolveAssemblyReference.cache
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.exe
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\TcpServer\TestCase9\TestCase9.xml
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\TcpServer\TestCase8\TestCase8.xml
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\TcpServer\TestCase7\TestCase7.xml
@@ -35,11 +48,10 @@ E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Sample.exe.confi
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Sample.exe
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Sample.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.dll
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Log4Net.dll
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\System.Net.Http.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\log4net.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.pdb
-E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\log4net.xml
-E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.csprojResolveAssemblyReference.cache
-E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.exe
-E:\Projects\GitHub\Octopus\Src\Octopus.Sample\obj\Debug\Octopus.Sample.pdb
-E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\System.Net.Http.dll
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Log4Net.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\System.Net.Http.xml
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\log4net.xml

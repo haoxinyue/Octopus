@@ -47,7 +47,7 @@ namespace Octopus.Common.ProducerConsumer
                 {
                     T t = _produceFunc();
 
-                    _productQueue.TryAdd(t);
+                    _productQueue.Add(t);
                 }
                 catch
                 {

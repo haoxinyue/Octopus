@@ -39,7 +39,7 @@ namespace Octopus.Sample.TcpServer
     {
         public void RunTest()
         {
-            Task startServerTask = new Task(() => StartServer());
+            Task startServerTask = new Task(() => StartServerWithConfig());
             startServerTask.Start();
             startServerTask.Wait();
 
@@ -73,7 +73,8 @@ namespace Octopus.Sample.TcpServer
 
         public void StartServerWithConfig()
         {
-            OctopusConfig oc = OctopusConfig.Load("TcpServer\\TestCase4\\TestCase4.xml");
+            OctopusConfig oc = new OctopusConfig();
+            oc.Load("TcpServer\\TestCase4\\TestCase4.xml");
 
             foreach (var item in oc.Adapters)
             {

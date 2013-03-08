@@ -2,10 +2,8 @@ E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Octopus.Extension.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Octopus.Extension.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Newtonsoft.Json.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Octopus.dll
-E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\log4net.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Octopus.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\Newtonsoft.Json.xml
-E:\Projects\GitHub\Octopus\Src\Octopus.Extension\bin\Debug\log4net.xml
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\obj\Debug\Octopus.Extension.csprojResolveAssemblyReference.cache
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\obj\Debug\Octopus.Extension.dll
 E:\Projects\GitHub\Octopus\Src\Octopus.Extension\obj\Debug\Octopus.Extension.pdb

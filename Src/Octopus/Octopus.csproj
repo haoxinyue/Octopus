@@ -11,10 +11,14 @@
     <AssemblyName>Octopus</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="log4net">
-      <HintPath>..\packages\log4net.2.0.0\lib\net40-full\log4net.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
@@ -96,6 +97,7 @@
     <Compile Include="Interpreter\ByteArrayInterpreter.cs" />
     <Compile Include="DataItem.cs" />
     <Compile Include="DataItemSorter.cs" />
+    <Compile Include="Interpreter\EmptyInterpreter.cs" />
     <Compile Include="Interpreter\FormatterFilters\ByteArrayTypedFormatterFilter.cs" />
     <Compile Include="Interpreter\FormatterFilters\ByteArrayLengthGreatThanFormatterFilter.cs" />
     <Compile Include="Interpreter\FormatterFilters\FormatterFilterBase.cs" />
@@ -141,18 +143,18 @@
     <Compile Include="Interpreter\Items\ValueItem.cs" />
     <Compile Include="Interpreter\StringInterpreter.cs" />
     <Compile Include="Envelop.cs" />
+    <Compile Include="Log\ConsoleLogWriterFactory.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Interpreter\MultipleFormatterByteArrayInterpreter.cs" />
     <Compile Include="Interpreter\SingleFormatterByteArrayInterpreter.cs" />
     <Compile Include="IObjectWithName.cs" />
     <Compile Include="Log\ILogWriter.cs" />
     <Compile Include="Log\ILogWriterFactory.cs" />
-    <Compile Include="Log\Log4NetLogWriter.cs" />
-    <Compile Include="Log\Log4NetLogWriterFactory.cs" />
     <Compile Include="Log\Logging.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Log\ConsoleLogWriter.cs" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -80,7 +80,8 @@ namespace Octopus.Sample.TcpServer
 
         public void StartServerWithConfig()
         {
-            OctopusConfig oc = OctopusConfig.Load("TcpServer\\TestCase8\\TestCase8.xml");
+            OctopusConfig oc = new OctopusConfig();
+            oc.Load("TcpServer\\TestCase8\\TestCase8.xml");
 
             foreach (var item in oc.Adapters)
             {

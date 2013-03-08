@@ -52,7 +52,7 @@ namespace Octopus.Interpreter
             }
             else
             {
-                _logWriter.Log("No Message created");
+                //_logWriter.Log("No Message created");
             }
         }
 
