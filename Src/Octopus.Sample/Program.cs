@@ -1,10 +1,6 @@
-﻿using Octopus;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
 using System.Net.Sockets;
-using System.Threading;
 using Octopus.Config;
 using Octopus.Log4Net;
 
@@ -76,6 +72,24 @@ namespace Octopus.Sample
 
             //TcpServer.TestCase9 case9 = new TcpServer.TestCase9();
             //case9.RunTest();
+
+            #endregion
+
+            #region TcpServer.TestCase10
+
+            //TcpServer.TestCase10 case10 = new TcpServer.TestCase10();
+            //case10.RunTest();
+
+            #endregion
+
+            #endregion
+
+            #region RFID
+
+            #region RFID.TestCase1
+
+            //RFID.TestCase1 case1 = new RFID.TestCase1();
+            //case1.RunTest();
 
             #endregion
 

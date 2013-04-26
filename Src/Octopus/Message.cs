@@ -15,12 +15,7 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using Octopus.Common.Collection;
 
 namespace Octopus
 {
@@ -28,7 +23,7 @@ namespace Octopus
     {
         protected string _messageType = string.Empty;
 
-        private SortedDictionary<string, DataItem> _dataItems = null;
+        private OrderedDictionary<string, DataItem> _dataItems = null;
 
         public string MessageType
         {
@@ -39,13 +34,13 @@ namespace Octopus
 
         public Message(string messageType) { _messageType = messageType; }
 
-        public Message(string messageType, SortedDictionary<string, DataItem> dataItems)
+        public Message(string messageType, OrderedDictionary<string, DataItem> dataItems)
         {
             _messageType = messageType;
             _dataItems = dataItems;
         }
 
-        public SortedDictionary<string, DataItem> DataItems
+        public OrderedDictionary<string, DataItem> DataItems
         {
             get { return _dataItems; }
             set { _dataItems = value; }

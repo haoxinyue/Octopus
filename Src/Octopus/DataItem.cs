@@ -15,17 +15,13 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Octopus.Common.Collection;
 
 namespace Octopus
 {
     public class DataItem
     {
-        private SortedDictionary<string, DataItem> _dataItems = new SortedDictionary<string, DataItem>(DataItemSorter.Instance);
+        private OrderedDictionary<string, DataItem> _dataItems = new OrderedDictionary<string, DataItem>();
         private string _name = string.Empty;
         private object _value = null;
 
@@ -39,7 +35,7 @@ namespace Octopus
             get { return _value; }
         }
 
-        public SortedDictionary<string, DataItem> DataItems
+        public OrderedDictionary<string, DataItem> DataItems
         {
             get { return _dataItems; }
             set { _dataItems = value; }

@@ -15,10 +15,10 @@
 
 #endregion
 
-using Octopus.Channel;
-using Octopus.Interpreter.Items;
 using System;
-using System.Collections.Generic;
+using System.Collections.Specialized;
+using Octopus.Interpreter.Items;
+using Octopus.Common.Collection;
 
 namespace Octopus.Interpreter.Formatters
 {
@@ -44,7 +44,7 @@ namespace Octopus.Interpreter.Formatters
             formattedDataLength = 0;
             try
             {
-                SortedDictionary<string, DataItem> dict = new SortedDictionary<string, DataItem>(DataItemSorter.Instance);
+                OrderedDictionary<string, DataItem> dict = new OrderedDictionary<string, DataItem>();
                 foreach (Item item in _items)
                 {
                     int subFormattedDataLength = 0;
