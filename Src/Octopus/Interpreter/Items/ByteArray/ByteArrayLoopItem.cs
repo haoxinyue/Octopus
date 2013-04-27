@@ -15,11 +15,6 @@
 
 #endregion
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Octopus.Interpreter.Items
 {
@@ -27,12 +22,14 @@ namespace Octopus.Interpreter.Items
     {
         private ByteArrayCompositeValueItem _byteArrayCompositeValueItem = null;
 
-        public ByteArrayLoopItem(string name, ByteArrayCompositeValueItem byteArrayCompositeValueItem) : base(name)
+        public ByteArrayLoopItem(string name, ByteArrayCompositeValueItem byteArrayCompositeValueItem)
+            : base(name)
         {
             _byteArrayCompositeValueItem = byteArrayCompositeValueItem;
         }
 
-        public ByteArrayLoopItem(string name, short sortIndex, ByteArrayCompositeValueItem byteArrayCompositeValueItem) : base(name, sortIndex)
+        public ByteArrayLoopItem(string name, short sortIndex, ByteArrayCompositeValueItem byteArrayCompositeValueItem)
+            : base(name, sortIndex)
         {
             _byteArrayCompositeValueItem = byteArrayCompositeValueItem;
         }
@@ -50,16 +47,19 @@ namespace Octopus.Interpreter.Items
 
             int loopCount = (input.Length - index) / _byteArrayCompositeValueItem.GetRequiredDataLength();
             int currentIndex = index;
+            int nameSuffix = 1;
 
             while (loopCount-- > 0)
             {
                 int subFormattedDataLength = 0;
                 DataItem dataItemChild = _byteArrayCompositeValueItem.GetValue(input, currentIndex, ref subFormattedDataLength);
-
+                dataItemChild.Name = dataItemChild.Name + "_" + nameSuffix.ToString();
                 dataItem.AddDataItem(dataItemChild);
 
                 currentIndex += subFormattedDataLength;
                 formattedDataLength += subFormattedDataLength;
+
+                nameSuffix++;
             }
 
             return dataItem;
