@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
-using Octopus.Activator;
 using Octopus.Adapter;
 using Octopus.Channel;
-using Octopus.Command;
 using Octopus.Config;
 using Octopus.Interpreter;
 using Octopus.Interpreter.Formatters;
@@ -16,9 +13,7 @@ using Octopus.Interpreter.Items;
 namespace Octopus.Sample.TcpServer
 {
     /// <summary>
-    /// Test Case 8 is a case that use activator
-    /// some time device will not send data automatically, we should send a command to activator it
-    /// 
+    /// Test Case 10 is a case that interprete the bit in a byte
     /// ******************************************************************************
     /// Bytes Format:
     /// 
@@ -31,15 +26,17 @@ namespace Octopus.Sample.TcpServer
     ///             ------------------------------------
     /// index：3     |     Temperature (2 bytes)        |
     ///             ------------------------------------
-    /// index：4     |     Longitude (8 bytes)        |
+    /// index：4     |     Longitude (8 bytes)          |
     ///             ------------------------------------
-    /// index：5     |     Reserved  (1 byte)           |
+    /// index：5     |     Flag1 (0 Bit)
+    ///                    Flag2 (1-3 Bit)
+    ///                    Flag3 (4-7 Bit)              |
     ///             ------------------------------------
     /// index：6     |     Tailer 0xAA 0x55  (2 bytes)  |
     ///             ------------------------------------
     /// ******************************************************************************
     /// </summary>
-    public class TestCase8
+    public class TestCase10
     {
         public void RunTest()
         {
@@ -54,11 +51,6 @@ namespace Octopus.Sample.TcpServer
         {
             TcpServerChannel tcpServerChannel = new TcpServerChannel("TcpServerChannel", 9988);
 
-            IActivator activator1 = new OneTimeActivator("Activator1");
-
-            byte[] command1Bytes = new byte[] { 0x01, 0x16 };
-            activator1.AddCommand(new ByteArrayCommand("command1", tcpServerChannel, command1Bytes));
-
             SingleFormatterByteArrayInterpreter interpreter = new SingleFormatterByteArrayInterpreter("Interpreter");
             interpreter.SetHeaders(new byte[] { 0x55, 0xAA });
             interpreter.SetTailers(new byte[] { 0xAA, 0x55 });
@@ -69,20 +61,24 @@ namespace Octopus.Sample.TcpServer
             formatter.AddItem(new ByteArrayInt32Item("NodeId", 0));
             formatter.AddItem(new ByteArrayInt16Item("Temperature", 2));
             formatter.AddItem(new ByteArrayDoubleItem("Longitude", 3));
-            formatter.AddItem(new ByteArrayByteItem("Reserved", 4));
+
+            ByteArrayByteItem babi = new ByteArrayByteItem("Flags", 4);
+            babi.AddBitItem("Flag1", 1);
+            babi.AddBitItem("Flag2", 3);
+            babi.AddBitItem("Flag3", 4);
+            formatter.AddItem(babi);
 
             interpreter.AddFormatter(formatter);
 
-            tcpServerChannel.Connected += activator1.SendToTarget;
-
             ByteArrayAdapter baa = new ByteArrayAdapter("ByteArrayAdapter", tcpServerChannel, interpreter, Program.ShowEnvelop);
+
             baa.Setup();
         }
 
         public void StartServerWithConfig()
         {
             OctopusConfig oc = new OctopusConfig();
-            oc.Load("TcpServer\\TestCase8\\TestCase8.xml");
+            oc.Load("TcpServer\\TestCase10\\TestCase10.xml");
 
             foreach (var item in oc.Adapters)
             {
@@ -101,10 +97,7 @@ namespace Octopus.Sample.TcpServer
 
             List<byte> dataList = new List<byte>();
 
-            byte[] buffer = new byte[1024];
-            int count = ns.Read(buffer, 0, 1024);
-
-            if (buffer[0] == 0x01 && buffer[1] == 0x16)
+            while (Console.ReadLine() != null)
             {
                 dataList.AddRange(new byte[] { 0x55, 0xAA });
 
@@ -116,18 +109,13 @@ namespace Octopus.Sample.TcpServer
                 dataList.AddRange(BitConverter.GetBytes((short)37));
                 //Longitude
                 dataList.AddRange(BitConverter.GetBytes((double)121.29));
-                dataList.Add(0);
+                dataList.Add(226);
 
                 dataList.AddRange(new byte[] { 0xAA, 0x55 });
 
                 byte[] data = dataList.ToArray();
 
-                while (true)
-                {
-                    ns.Write(data, 0, data.Length);
-
-                    Thread.Sleep(5000);
-                }
+                ns.Write(data, 0, data.Length);
             }
         }
     }

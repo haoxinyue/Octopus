@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RFID\TestCase1\TestCase1.cs" />
     <Compile Include="TcpServer\TestCase9\TestCase9.cs" />
     <Compile Include="TcpServer\TestCase8\TestCase8.cs" />
     <Compile Include="TcpServer\TestCase7\TestCase7.cs" />
@@ -80,9 +79,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="RFID\TestCase1\TestCase1.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <Content Include="TcpServer\TestCase9\TestCase9.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -110,6 +106,12 @@
     <Content Include="TcpServer\TestCase1\TestCase1.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="TcpServer\TestCase10\TestCase10.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="RFID\TestCase1\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

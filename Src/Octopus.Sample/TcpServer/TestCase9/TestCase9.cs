@@ -1,4 +1,9 @@
-﻿using Octopus.Activator;
+﻿using System;
+using System.Collections.Generic;
+using System.Net.Sockets;
+using System.Text;
+using System.Threading.Tasks;
+using Octopus.Activator;
 using Octopus.Adapter;
 using Octopus.Channel;
 using Octopus.Command;
@@ -6,12 +11,6 @@ using Octopus.Config;
 using Octopus.Interpreter;
 using Octopus.Interpreter.Formatters;
 using Octopus.Interpreter.Items;
-using System;
-using System.Collections.Generic;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 
 namespace Octopus.Sample.TcpServer
 {
@@ -29,7 +28,9 @@ namespace Octopus.Sample.TcpServer
     ///             ------------------------------------
     /// index：2     |     Node Name    (6 bytes)       |
     ///             ------------------------------------
-    /// index：4     |     CustomItem (10 bytes)        |
+    /// index：3     |     Temperature (2 bytes)        |
+    ///             ------------------------------------
+    /// index：4     |     Longitude (8 bytes)        |
     ///             ------------------------------------
     /// index：5     |     Reserved  (1 byte)           |
     ///             ------------------------------------

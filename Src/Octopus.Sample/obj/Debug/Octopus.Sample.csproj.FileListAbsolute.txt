@@ -55,3 +55,4 @@ E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\Octopus.Log4Net.pdb
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\System.Net.Http.xml
 E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\log4net.xml
+E:\Projects\GitHub\Octopus\Src\Octopus.Sample\bin\Debug\TcpServer\TestCase10\TestCase10.xml

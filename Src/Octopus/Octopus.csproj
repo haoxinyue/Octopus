@@ -90,6 +90,7 @@
     <Compile Include="Exceptions\ElementNotFoundException.cs" />
     <Compile Include="Exceptions\ElementValueNotFoundException.cs" />
     <Compile Include="Exceptions\FormatterNotFoundException.cs" />
+    <Compile Include="Exceptions\OutOfLengthLimitationException.cs" />
     <Compile Include="Exceptions\UnknownElementException.cs" />
     <Compile Include="Interpreter\ByteArrayInterpreter.cs" />
     <Compile Include="DataItem.cs" />

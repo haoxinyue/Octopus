@@ -15,6 +15,14 @@
 
 #endregion
 
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Text;
+using System.Xml.Linq;
 using Octopus.Activator;
 using Octopus.Adapter;
 using Octopus.Channel;
@@ -24,14 +32,6 @@ using Octopus.Interpreter;
 using Octopus.Interpreter.FormatterFilters;
 using Octopus.Interpreter.Formatters;
 using Octopus.Interpreter.Items;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Net;
-using System.Reflection;
-using System.Text;
-using System.Xml.Linq;
 
 namespace Octopus.Config
 {
@@ -457,7 +457,7 @@ namespace Octopus.Config
                     }
                 }
 
-                object custom  = System.Activator.CreateInstance(type, args);
+                object custom = System.Activator.CreateInstance(type, args);
 
                 return custom;
             }
@@ -483,6 +483,12 @@ namespace Octopus.Config
                     break;
                 case "ByteArrayByteItem":
                     item = new ByteArrayByteItem(name, index);
+                    foreach (var subItemElement in element.Elements("BitItem"))
+                    {
+                        string bitItemName = GetAttribute(subItemElement, "Name");
+                        int bitItemLength = int.Parse(GetAttribute(subItemElement, "Length"));
+                        ((ByteArrayByteItem)item).AddBitItem(bitItemName, bitItemLength);
+                    }
                     break;
                 case "ByteArrayCompositeValueItem":
                     item = new ByteArrayCompositeValueItem(name, index);
@@ -538,7 +544,7 @@ namespace Octopus.Config
 
                         if (element.Elements("Parameter") != null)
                         {
-                            args = new object[element.Elements("Parameter").Count()+2];
+                            args = new object[element.Elements("Parameter").Count() + 2];
                             int i = 0;
                             args[0] = name;
                             args[1] = index;
@@ -547,7 +553,7 @@ namespace Octopus.Config
                                 string pType = GetAttribute(paraElement, "Type");
                                 string pValue = GetAttribute(paraElement, "Value");
                                 object p = Convert.ChangeType(pValue, Type.GetType(pType));
-                                args[i+2] = p;
+                                args[i + 2] = p;
                                 i++;
                             }
                         }

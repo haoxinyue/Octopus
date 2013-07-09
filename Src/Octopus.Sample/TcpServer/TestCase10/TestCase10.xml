@@ -10,15 +10,11 @@
       <Item Name="CustomItem" SortIndex="2" Type="CustomItem" CustomTypeName="Octopus.Sample.TcpServer.TestCase7+CustomItem, Octopus.Sample">
         <Parameter Type="System.String" Value="Test"></Parameter>
       </Item>
-      <Item Name="Reserved" SortIndex="4" Type="ByteArrayByteItem"></Item>
+      <Item Name="Flags" SortIndex="4" Type="ByteArrayByteItem">
+        <BitItem Name="Flag1" Length="1"></BitItem>
+        <BitItem Name="Flag2" Length="3"></BitItem>
+        <BitItem Name="Flag3" Length="4"></BitItem>
+      </Item>
     </Formatter>
   </Interpreter>
-  <Activator Name="Activator1" Type="IntervalActivator" ExecuteInterval="5000">
-    <Command Name="ActivatorCommand" Type="ByteArrayCommand">
-      01 16
-    </Command>
-  </Activator>
-  <EventConnecter>
-    <Linker RaiserName="Adapter1" EventName="SetupFinished" HandlerName="Activator1" HandlerMethodName="StartProcess"></Linker>
-  </EventConnecter>
 </Adapter>

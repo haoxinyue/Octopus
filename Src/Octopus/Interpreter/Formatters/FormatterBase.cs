@@ -57,7 +57,7 @@ namespace Octopus.Interpreter.Formatters
             }
             else
             {
-                throw new DuplicateItemException("Item exists. Same item name");
+                throw new DuplicateItemException("Item exists, Same item name.");
             }
         }
 

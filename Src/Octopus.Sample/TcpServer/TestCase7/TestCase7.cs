@@ -25,11 +25,11 @@ namespace Octopus.Sample.TcpServer
     ///             ------------------------------------
     /// index：2     |     Node Name    (6 bytes)       |
     ///             ------------------------------------
-    /// index：4     |     CustomItem (10 bytes)        |
+    /// index：3     |     CustomItem (10 bytes)        |
     ///             ------------------------------------
-    /// index：5     |     Reserved  (1 byte)           |
+    /// index：4     |     Reserved  (1 byte)           |
     ///             ------------------------------------
-    /// index：6     |     Tailer 0xAA 0x55  (2 bytes)  |
+    /// index：5     |     Tailer 0xAA 0x55  (2 bytes)  |
     ///             ------------------------------------
     /// ******************************************************************************
     /// </summary>
